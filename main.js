@@ -84,7 +84,7 @@ let PostsCreator = posts.forEach((postObject) => {
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                    Piace a <b id="like-counter-${postObject.id}" class="js-likes-counter">${postObject.likes}</b> persone
                 </div>
             </div> 
         </div>            
