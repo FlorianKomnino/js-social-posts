@@ -84,7 +84,7 @@ let postsCreator = posts.forEach((postObject, index, array) => {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <div class="like-button  js-like-button" href="#" data-postid="${postObject.id}">
+                    <div class="like-button  js-like-button" href="#" data-postid="${index}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </div>
@@ -95,34 +95,48 @@ let postsCreator = posts.forEach((postObject, index, array) => {
             </div> 
         </div>            
     </div>`;
-    console.log(postObject.id);
 
-    let customButton = document.querySelectorAll(`[data-postid="${postObject.id}"]`);
+    let customButton = document.querySelector(`[data-postid="${index}"]`);
 
     customButton.addEventListener ('click', function () {
-    buttonCounter(`buttonIndex${postObject.id}`, array[index].likes);
+    console.log(customButton);
+    let likesIndex = `buttonIndex${postObject.id}`;
+    console.log(likesIndex);
+
+    let likesViewed = postObject.likes;
+    if(likesIndex === false) {
+        likesIndex = true;
+        likesViewed++;
+    } else if (likesIndex === true){
+        likesIndex = false;
+        likesViewed--;
+    }
+
+
     let momentaryLikeCounter = document.getElementById(`like-counter-${postObject.id}`)
     momentaryLikeCounter.innerHTML = postObject.likes;
     console.log(postObject.likes);
-
     });
-    
-    console.log(postObject.id);
-
 });
+/*
+let customButton = document.querySelectorAll('[data-postid="1"]');
 
+customButton[0].addEventListener('click', function () {
 
-
-
-function buttonCounter (buttonIndex, counter) {
-    if(!buttonIndex) {
-        buttonIndex = true;
-        counter++;
-    } else {
-        buttonIndex = false;
-        counter--;
+    if(buttonIndex1 === false) {
+        buttonIndex1 = true;
+        posts[0].likes++;
+    } else if (buttonIndex1 === true){
+        buttonIndex1 = false;
+        posts[0].likes--;
     }
-}
+
+    let customCounter = document.getElementById(`like-counter-1`)
+    customCounter.innerHTML = posts[0].likes;
+    console.log(customButton);
+    console.log(posts[0].likes);
+});
+*/
 
 /*
 <div class="post">
