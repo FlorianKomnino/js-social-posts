@@ -58,7 +58,13 @@ const posts = [
 
 const postArea = document.querySelector('div.posts-list');
 
-let PostsCreator = posts.forEach((postObject) => {
+let buttonIndex1 = false;
+let buttonIndex2 = false;
+let buttonIndex3 = false;
+let buttonIndex4 = false;
+let buttonIndex5 = false;
+
+let postsCreator = posts.forEach((postObject, index, array) => {
     postArea.innerHTML += `
     <div class="post">
         <div class="post__header">
@@ -78,10 +84,10 @@ let PostsCreator = posts.forEach((postObject) => {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                    <div class="like-button  js-like-button" href="#" data-postid="${postObject.id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
-                    </a>
+                    </div>
                 </div>
                 <div class="likes__counter">
                     Piace a <b id="like-counter-${postObject.id}" class="js-likes-counter">${postObject.likes}</b> persone
@@ -89,9 +95,34 @@ let PostsCreator = posts.forEach((postObject) => {
             </div> 
         </div>            
     </div>`;
+    console.log(postObject.id);
+
+    let customButton = document.querySelectorAll(`[data-postid="${postObject.id}"]`);
+
+    customButton.addEventListener ('click', function () {
+    buttonCounter(`buttonIndex${postObject.id}`, array[index].likes);
+    let momentaryLikeCounter = document.getElementById(`like-counter-${postObject.id}`)
+    momentaryLikeCounter.innerHTML = postObject.likes;
+    console.log(postObject.likes);
+
+    });
+    
+    console.log(postObject.id);
+
 });
 
 
+
+
+function buttonCounter (buttonIndex, counter) {
+    if(!buttonIndex) {
+        buttonIndex = true;
+        counter++;
+    } else {
+        buttonIndex = false;
+        counter--;
+    }
+}
 
 /*
 <div class="post">
