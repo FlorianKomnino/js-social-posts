@@ -58,13 +58,7 @@ const posts = [
 
 const postArea = document.querySelector('div.posts-list');
 
-let buttonIndex1 = false;
-let buttonIndex2 = false;
-let buttonIndex3 = false;
-let buttonIndex4 = false;
-let buttonIndex5 = false;
-
-let postsCreator = posts.forEach((postObject, index, array) => {
+let postsCreator = posts.forEach((postObject, index) => {
     postArea.innerHTML += `
     <div class="post">
         <div class="post__header">
@@ -79,7 +73,7 @@ let postsCreator = posts.forEach((postObject, index, array) => {
             </div>
         </div>
         <div class="post__text">${postObject.content}<div class="post__image">
-            <img src="${postObject.media}" alt="${postObject.name}'s post image">
+            <img src="${postObject.media}" alt="${postObject.author.name}'s post image">
         </div>
         <div class="post__footer">
             <div class="likes js-likes">
@@ -95,29 +89,103 @@ let postsCreator = posts.forEach((postObject, index, array) => {
             </div> 
         </div>            
     </div>`;
+    
 
-    let customButton = document.querySelector(`[data-postid="${index}"]`);
+    // creo variabile assegnata all'elemento like button
+    document.querySelector(`[data-postid="${index}"]`).id = `${index}`;
 
-    customButton.addEventListener ('click', function () {
-    console.log(customButton);
-    let likesIndex = `buttonIndex${postObject.id}`;
+});
+
+let buttonIndex0 = false;
+let buttonIndex1 = false;
+let buttonIndex2 = false;
+let buttonIndex3 = false;
+let buttonIndex4 = false;
+
+let likeIndexes = [
+    buttonIndex0,
+    buttonIndex1,
+    buttonIndex2,
+    buttonIndex3,
+    buttonIndex4
+];
+
+let likeButtons = [
+    document.getElementById('0'),
+    document.getElementById('1'),
+    document.getElementById('2'),
+    document.getElementById('3'),
+    document.getElementById('4')
+];
+
+function likeButtonBehavior (likesIndex, postObject, likeCounter) {
     console.log(likesIndex);
-
-    let likesViewed = postObject.likes;
+    console.log(postObject);
+    console.log(likeCounter);
     if(likesIndex === false) {
         likesIndex = true;
-        likesViewed++;
+        likeCounter = parseInt(likeCounter) + 1;
+        postObject.likes = parseInt(postObject) + 1;
+        console.log(likesIndex);
+
     } else if (likesIndex === true){
         likesIndex = false;
-        likesViewed--;
+        likeCounter.innerHTML = parseInt(likeCounter.innerHTML) - 1;
+        postObject.likes = parseInt(postObject) - 1;
+        console.log(postObject.likes);
     }
+}
+
+for (let i=0 ; i<posts.length ; i++) {
+    let singleLikeButton = likeButtons[i];
+    console.log(singleLikeButton);
+    singleLikeButton.addEventListener('click', () => {
+        if(likeIndexes[i] === false) {
+            likeIndexes[i] = true;
+            likeButtons[i] = likeButtons[i] + 1;
+            posts[i].likes = posts[i].likes + 1;
+            console.log(posts[i].likes);
+            console.log(likeIndexes[i]);
+    
+        } else if (likeIndexes[i] === true){
+            likeIndexes[i] = false;
+            likeButtons[i].innerHTML = likeButtons[i].innerHTML - 1;
+            posts[i].likes = posts[i].likes - 1;
+            console.log(posts[i].likes);
+            console.log(likeIndexes[i]);
+        }
+    })
+}
 
 
-    let momentaryLikeCounter = document.getElementById(`like-counter-${postObject.id}`)
-    momentaryLikeCounter.innerHTML = postObject.likes;
-    console.log(postObject.likes);
-    });
-});
+
+
+/*
+    //creo event listener sul bottone del like
+    customButton.addEventListener ('click', function () {
+        console.log(customButton);
+        let likesIndex = `buttonIndex${postObject.id}`;
+        console.log(likesIndex);
+    
+        let likesViewed = postObject.likes;
+        if(likesIndex === false) {
+            likesIndex = true;
+            likesViewed++;
+        } else if (likesIndex === true){
+            likesIndex = false;
+            likesViewed--;
+        }
+    
+    
+        let momentaryLikeCounter = document.getElementById(`like-counter-${postObject.id}`)
+        momentaryLikeCounter.innerHTML = postObject.likes;
+        console.log(postObject.likes);
+        });
+*/
+
+
+
+
 /*
 let customButton = document.querySelectorAll('[data-postid="1"]');
 
