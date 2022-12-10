@@ -138,88 +138,10 @@ for (let i=0 ; i<posts.length ; i++) {
             document.getElementById(`like-counter-${i + 1}`).innerHTML = posts[i].likes;
             console.log(posts[i].likes);
             console.log(likeIndexes[i]);
+            console.log(likeIndexes[i]);
+            console.log(likeIndexes[i]);
+            console.log(likeIndexes[i]);
+            console.log(likeIndexes[i]);
         }
     })
 }
-
-
-
-
-/*
-    //creo event listener sul bottone del like
-    customButton.addEventListener ('click', function () {
-        console.log(customButton);
-        let likesIndex = `buttonIndex${postObject.id}`;
-        console.log(likesIndex);
-    
-        let likesViewed = postObject.likes;
-        if(likesIndex === false) {
-            likesIndex = true;
-            likesViewed++;
-        } else if (likesIndex === true){
-            likesIndex = false;
-            likesViewed--;
-        }
-    
-    
-        let momentaryLikeCounter = document.getElementById(`like-counter-${postObject.id}`)
-        momentaryLikeCounter.innerHTML = postObject.likes;
-        console.log(postObject.likes);
-        });
-*/
-
-
-
-
-/*
-let customButton = document.querySelectorAll('[data-postid="1"]');
-
-customButton[0].addEventListener('click', function () {
-
-    if(buttonIndex1 === false) {
-        buttonIndex1 = true;
-        posts[0].likes++;
-    } else if (buttonIndex1 === true){
-        buttonIndex1 = false;
-        posts[0].likes--;
-    }
-
-    let customCounter = document.getElementById(`like-counter-1`)
-    customCounter.innerHTML = posts[0].likes;
-    console.log(customButton);
-    console.log(posts[0].likes);
-});
-*/
-
-/*
-<div class="post">
-<div class="post__header">
-    <div class="post-meta">                    
-        <div class="post-meta__icon">
-            <img class="profile-pic" src="https://unsplash.it/300/300?image=15" alt="Phil Mangione">                    
-        </div>
-        <div class="post-meta__data">
-            <div class="post-meta__author">Phil Mangione</div>
-            <div class="post-meta__time">4 mesi fa</div>
-        </div>                    
-    </div>
-</div>
-<div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
-<div class="post__image">
-    <img src="https://unsplash.it/600/300?image=171" alt="">
-</div>
-<div class="post__footer">
-    <div class="likes js-likes">
-        <div class="likes__cta">
-            <a class="like-button  js-like-button" href="#" data-postid="1">
-                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                <span class="like-button__label">Mi Piace</span>
-            </a>
-        </div>
-        <div class="likes__counter">
-            Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
-        </div>
-    </div> 
-</div>            
-</div>
-*/
