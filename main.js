@@ -118,32 +118,16 @@ let likeButtons = [
     document.getElementById('4')
 ];
 
-function likeButtonBehavior (likesIndex, postObject, likeCounter) {
-    console.log(likesIndex);
-    console.log(postObject);
-    console.log(likeCounter);
-    if(likesIndex === false) {
-        likesIndex = true;
-        likeCounter = parseInt(likeCounter) + 1;
-        postObject.likes = parseInt(postObject) + 1;
-        console.log(likesIndex);
-
-    } else if (likesIndex === true){
-        likesIndex = false;
-        likeCounter.innerHTML = parseInt(likeCounter.innerHTML) - 1;
-        postObject.likes = parseInt(postObject) - 1;
-        console.log(postObject.likes);
-    }
-}
-
 for (let i=0 ; i<posts.length ; i++) {
     let singleLikeButton = likeButtons[i];
     console.log(singleLikeButton);
     singleLikeButton.addEventListener('click', () => {
+        singleLikeButton.classList.toggle('like-button--liked');
         if(likeIndexes[i] === false) {
             likeIndexes[i] = true;
             likeButtons[i] = likeButtons[i] + 1;
             posts[i].likes = posts[i].likes + 1;
+            document.getElementById(`like-counter-${i + 1}`).innerHTML = posts[i].likes;
             console.log(posts[i].likes);
             console.log(likeIndexes[i]);
     
@@ -151,6 +135,7 @@ for (let i=0 ; i<posts.length ; i++) {
             likeIndexes[i] = false;
             likeButtons[i].innerHTML = likeButtons[i].innerHTML - 1;
             posts[i].likes = posts[i].likes - 1;
+            document.getElementById(`like-counter-${i + 1}`).innerHTML = posts[i].likes;
             console.log(posts[i].likes);
             console.log(likeIndexes[i]);
         }
