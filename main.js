@@ -145,3 +145,11 @@ for (let i=0 ; i<posts.length ; i++) {
         }
     })
 }
+
+posts.forEach ((post)=> {
+    if (post.author.image == null) {
+        console.log('senza immagine');
+    } else {
+        console.log('con immagine');
+    }
+})
