@@ -89,7 +89,7 @@ let postsCreator = posts.forEach((postObject, index) => {
             </div> 
         </div>            
     </div>`;
-    
+
 
     // creo variabile assegnata all'elemento like button
     document.querySelector(`[data-postid="${index}"]`).id = `${index}`;
@@ -118,38 +118,54 @@ let likeButtons = [
     document.getElementById('4')
 ];
 
-for (let i=0 ; i<posts.length ; i++) {
+for (let i = 0; i < posts.length; i++) {
     let singleLikeButton = likeButtons[i];
     console.log(singleLikeButton);
     singleLikeButton.addEventListener('click', () => {
         singleLikeButton.classList.toggle('like-button--liked');
-        if(likeIndexes[i] === false) {
+        if (likeIndexes[i] === false) {
             likeIndexes[i] = true;
             likeButtons[i] = likeButtons[i] + 1;
             posts[i].likes = posts[i].likes + 1;
             document.getElementById(`like-counter-${i + 1}`).innerHTML = posts[i].likes;
-            console.log(posts[i].likes);
-            console.log(likeIndexes[i]);
-    
-        } else if (likeIndexes[i] === true){
+
+        } else if (likeIndexes[i] === true) {
             likeIndexes[i] = false;
             likeButtons[i].innerHTML = likeButtons[i].innerHTML - 1;
             posts[i].likes = posts[i].likes - 1;
             document.getElementById(`like-counter-${i + 1}`).innerHTML = posts[i].likes;
-            console.log(posts[i].likes);
-            console.log(likeIndexes[i]);
-            console.log(likeIndexes[i]);
-            console.log(likeIndexes[i]);
-            console.log(likeIndexes[i]);
-            console.log(likeIndexes[i]);
         }
     })
 }
 
-posts.forEach ((post)=> {
+const postsWithoutProfilePic = [
+    {
+        postId: '',
+        postAuthorInitials: '',
+        myQuerySelector: ''
+    }
+];
+
+posts.forEach((post) => {
     if (post.author.image == null) {
-        console.log('senza immagine');
+        postsWithoutProfilePic.push({
+            postId: `${post.id}`,
+            postAuthorInitials: `${post.author.name[1]}`
+        })
     } else {
         console.log('con immagine');
     }
 })
+
+let findElement = document.querySelector('div#container div:nth-child(4)');
+console.log(findElement);
+
+function getFirstLettersUppercase(words) {
+    const firstLetters = words
+        .split(' ')
+        .map(word => word[0])
+        .join('');
+
+    return firstLetters;
+}
+
